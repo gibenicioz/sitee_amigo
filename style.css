@@ -1,0 +1,652 @@
+ /* Remove margem e padding padrão de TODOS os elementos */
+* {
+  margin: 0; /* remove a margem padrão */
+  padding: 0; /* remove o padding padrão */
+  box-sizing: border-box; /* inclui padding e borda dentro do tamanho total do elemento */
+}
+
+/* Define que html e body ocupam 100% da largura e altura da tela */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* impede que a página tenha scroll horizontal */
+}
+
+/* Estilo geral do corpo do site */
+body {
+  font-family: 'Roboto Flex', sans-serif; /* fonte principal */
+  color: white; /* cor do texto */
+  background: #050A10; /* cor de fundo escura */
+}
+
+/* -------- SIDEBAR ESQUERDA -------- */
+.sidebar-left {
+  position: fixed; /* fixa no canto da tela */
+  top: 0;
+  left: 0;
+  width: 204px; /* largura fixa */
+  height: 100vh; /* ocupa toda a altura da tela */
+  padding: 20px;
+  border-right: 1px solid #ffffff; /* linha separadora à direita */
+}
+
+.logo-sidebar {
+  width: 150px; /* largura do logo */
+  height: auto;
+  display: block;
+  margin: 0 auto 10px; /* centraliza horizontalmente */
+}
+
+.sidebar-left h1 {
+  margin-bottom: 5px;
+  font-size: 25px;
+}
+
+/* Perfil exibido na sidebar esquerda */
+.perfil-principal {
+  display: flex; /* deixa o conteúdo lado a lado */
+  align-items: center; /* alinha verticalmente */
+  gap: 10px; /* espaço entre os itens */
+  padding: 15px 0;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+/* Foto do perfil */
+.perfil-principal img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* deixa a imagem redonda */
+  object-fit: cover; /* imagem cobre a área sem distorcer */
+}
+
+/* Informações do perfil */
+.perfil-principal .info {
+  flex: 1; /* ocupa o espaço disponível */
+}
+
+.perfil-principal .nome {
+  font-weight: bold;
+  font-size: 16px;
+  color: #eee;
+}
+
+.perfil-principal .arroba {
+  font-size: 15px;
+  color: #656565;
+}
+
+.perfil-principal .mais {
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer; /* vira uma "mãozinha" ao passar o mouse */
+}
+
+/* Links de navegação na sidebar esquerda */
+.sidebar-left nav a {
+  display: block;
+  color: #ffffff;
+  text-decoration: none; /* sem sublinhado */
+  margin: 28px 0; /* espaçamento entre links */
+  font-size: 24px;
+}
+
+/* -------- SIDEBAR DIREITA -------- */
+.sidebar-right {
+  position: fixed; /* fixa no canto direito */
+  top: 0;
+  right: 0;
+  width: 204px;
+  height: 100vh;
+  padding: 20px;
+  border-left: 1px solid #ffffff; /* linha separadora à esquerda */
+}
+
+.sidebar-right h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.sidebar-right .item-noticia {
+  margin-top: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #ffffff;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 15px; /* espaçamento extra entre as notícias */
+}
+
+/* Cada item da sidebar direita */
+.sidebar-right .item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ffffff;
+  font-size: 15px;
+  color: #ccc;
+}
+
+.primeiro-item {
+  border-top: 1px solid #ffffff;
+  padding-top: 10px; /* ajuste o espaço se quiser */
+}
+
+
+/* Mesmo estilo para a classe .item (provavelmente para outras listas) */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  width: 100%;
+  border-bottom: 1px solid #ffffff;
+  font-size: 15px;
+  color: #ccc;
+}
+
+/* Imagem de cada item */
+.item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Info de cada item */
+.item .info {
+  flex: 1;
+}
+
+.item .nome {
+  font-weight: bold;
+  font-size: 14px;
+  color: #eee;
+}
+
+.item .arroba {
+  font-size: 14px;
+  color: #888;
+}
+
+.item .mais {
+  font-size: 18px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+/* Bloco de notícias na sidebar direita */
+.noticias {
+  margin-top: 10px;
+}
+
+.item-noticia {
+  padding: 8px 0;
+  border-bottom: 1px solid #ffffff;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* -------- CONTEÚDO CENTRAL -------- */
+
+/* Container principal do feed central */
+.container {
+  margin-left: 204px; /* deixa espaço para a sidebar esquerda */
+  margin-right: 204px; /* deixa espaço para a sidebar direita */
+}
+
+/* Barra fixa no topo (busca + abas) */
+.barra-topo {
+  position: fixed;
+  top: 0;
+  left: 204px; /* respeita a sidebar esquerda */
+  right: 204px; /* respeita a sidebar direita */
+  padding: 10px;
+  border-bottom: 1px solid #ffffff;
+  display: flex;
+  flex-direction: column; /* empilha os filhos verticalmente */
+  align-items: center;
+  background: #050A10;
+  z-index: 999; /* fica acima dos outros elementos */
+}
+
+/* Campo de busca na barra do topo */
+.barra-topo input {
+  width: 90%;
+  max-width: 90%;
+  padding: 8px;
+  border-radius: 30px;
+  border: none;
+  background: #2b2b33;
+  color: white;
+  font-size: 14px;
+}
+
+/* Abas (links para 'Para você' e 'Seguindo') */
+.abas {
+  border-top: 1px solid #ffffff;
+  padding-top: 5px;
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* centraliza as abas */
+}
+
+.abas a, .abas span {
+  font-size: 16px;
+  color: #ccc;
+  text-decoration: none;
+  padding: 0 10px;
+}
+
+.abas a:hover {
+  color: white;
+  border-bottom: 2px solid white; /* efeito hover nas abas */
+}
+
+/* Feed (área que rola verticalmente) */
+.feed {
+  margin-top: 20px; /* desce o feed abaixo da barra topo */
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  left: 204px;
+  right: 204px;
+  overflow-y: auto; /* permite scroll vertical */
+  overflow-x: hidden; /* impede scroll horizontal */
+  padding: 20px;
+}
+
+/* Cada post do feed */
+.post {
+  width: 100%;
+  margin: 20px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ffffff;
+}
+
+/* Topo de cada post (foto + nome) */
+.post-topo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.post-topo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.usuario-info {
+  margin-left: 10px;
+}
+
+.usuario-info .nome {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Imagens do post */
+.post-imagens {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Ações do post (curtir, comentar, etc.) */
+.post-acoes {
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.post-acoes img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+/* Texto do post */
+.post-texto {
+  font-size: 16px;
+  color: #eee;
+}
+.video-post video {
+  width: 100%;
+  max-height: 460px;
+  border-radius: 8px;
+  object-fit: contain; /* <- aqui está a mudança! */
+  display: block;
+  margin: 0 auto;
+}
+
+
+/* Estilos para post com uma imagem só */
+.post-imagens.uma-imagem img {
+  width: 90%;
+  max-width: 1000px;
+  max-height: 460px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto; /* centraliza horizontalmente */
+}
+
+/* -------- RESPONSIVIDADE -------- */
+
+/* Quando a tela for menor que 768px (celular) */
+@media (max-width: 768px) {
+  .sidebar-left,
+  .sidebar-right {
+    display: none; /* esconde as sidebars */
+  }
+  .container {
+    margin: 0; /* remove margens laterais */
+  }
+  .barra-topo {
+    left: 0;
+    right: 0;
+  }
+  .feed {
+    left: 0;
+    right: 0;
+  }
+}
+
+/* Estilos para post com duas imagens */
+.post-imagens.duas-imagens img {
+  width: 49%;
+  max-height: 370px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+
+/* ----- Container principal do perfil ----- */
+/* ----- Seção principal do perfil ----- */
+.perfil-central {
+  margin: 0 auto; /* Centraliza horizontalmente */
+  padding: 0; /* Remove espaçamento interno padrão */
+  color: white; /* Cor principal do texto */
+  font-size: 16px; /* Tamanho base da fonte */
+  max-width: 100%; /* Impede que ultrapasse o tamanho da tela */
+  position: relative; /* Necessário para posicionar elementos filhos como absolutos */
+}
+
+/* ----- Banner no topo do perfil ----- */
+.banner-perfil {
+  width: 1095px; /* Ocupa toda a largura da seção */
+  height: 100px; /* Altura fixa do banner */
+  background-color: #7d89a6; /* Cor de fundo inspirada na imagem protótipo */
+  border-top-left-radius: 4px; /* Arredonda canto superior esquerdo */
+  border-top-right-radius: 4px; /* Arredonda canto superior direito */
+}
+
+/* ----- Cabeçalho contendo a imagem de perfil, nome, arroba e botões ----- */
+.header-perfil {
+  display: flex; /* Elementos lado a lado */
+  align-items: center; /* Alinhamento vertical ao centro */
+  gap: 15px; /* Espaçamento entre os itens */
+  padding: 20px 40px; /* Espaço interno superior/inferior e nas laterais */
+  margin-top: -40px; /* Sobe para sobrepor o banner */
+  position: relative; /* Para garantir empilhamento correto */
+  z-index: 2; /* Coloca acima do banner */
+}
+
+.foto-perfil {
+  width: 90px; /* Largura da imagem de perfil */
+  height: 90px; /* Altura da imagem de perfil */
+  border-radius: 50%; /* Torna a imagem redonda */
+  object-fit: cover; /* Mantém proporção sem distorcer */
+  border: 2px solid #ffffff; /* Borda escura ao redor da imagem */
+}
+
+.nome-user {
+  display: flex; /* Empilha nome e arroba */
+  flex-direction: column; /* Direção vertical */
+  justify-content: center; /* Centraliza verticalmente dentro do espaço */
+}
+
+.nome {
+  font-size: 22px; /* Tamanho do nome */
+  font-weight: bold; /* Deixa o nome em negrito */
+  color: white; /* Cor branca para destaque */
+}
+
+.arroba {
+  font-size: 15px; /* Tamanho do arroba */
+  color: #c4c4c4; /* Cor cinza claro */
+}
+
+/* ----- Botões "Aliados" e "Enviar mensagem irís" ----- */
+.botoes {
+  margin-left: auto; /* Empurra os botões para a direita */
+  display: flex; /* Deixa os botões lado a lado */
+  gap: 10px; /* Espaço entre os botões */
+}
+
+.btn-aliados,
+.btn-msg {
+  background: #2E353A; /* Cor de fundo escura */
+  border: none; /* Remove a borda padrão */
+  color: white; /* Cor do texto */
+  padding: 6px 15px; /* Espaçamento interno */
+  border-radius: 8px; /* Cantos arredondados */
+  cursor: pointer; /* Mostra cursor de clique */
+  font-size: 16px; /* Tamanho da fonte do botão */
+}
+
+/* ----- Contagem de posts, aliados e escolhidos ----- */
+.contagem {
+  display: flex; /* Itens lado a lado */
+  gap: 40px; /* Espaço entre os itens */
+  padding: 0 40px; /* Espaço lateral */
+  margin-top: 10px; /* Espaço acima da contagem */
+  font-size: 17px; /* Tamanho da fonte */
+  color: #aaa; /* Cor cinza clara */
+}
+
+.contagem strong {
+  color: white; /* Negrito em branco para destacar número */
+}
+
+/* ----- Informações como bio, localização, links etc ----- */
+.infos-perfil {
+  display: flex; /* Empilha os blocos */
+  flex-direction: column; /* Direção vertical */
+  gap: 25px; /* Espaço entre cada bloco */
+  padding: 30px 40px 10px 40px; /* Espaços internos */
+  font-size: 18px; /* Tamanho da fonte */
+  color: #e4e4e4; /* Cor geral do texto */
+}
+
+.infos-perfil .item {
+  display: flex; /* Empilha título e conteúdo */
+  flex-direction: column;
+  align-items: flex-start; /* Alinha tudo à esquerda */
+  border: none; /* Garante que não há borda separadora */
+}
+
+.titulo {
+  font-weight: bold; /* Deixa o título em negrito */
+  font-size: 24px; /* Tamanho do título */
+  margin-bottom: 2px; /* Espaço entre título e conteúdo */
+  border: none; /* Remove qualquer linha de separação */
+}
+
+.conteudo {
+  font-size: 18px; /* Tamanho do conteúdo */
+  color: #e0e0e0; /* Cor cinza clara */
+}
+
+.infos-perfil a {
+  color: #ffffff;
+  text-decoration: none; /* Sublinha o link */
+  word-break: break-word; /* Quebra links muito longos */
+}
+
+/* ----- Música Favorita (área destacada à direita) ----- */
+.musica-favorita {
+  position: absolute; /* Posiciona sobre o restante */
+  top: 170px; /* Distância do topo */
+  right: 40px; /* Distância da direita */
+  text-align: center; /* Centraliza conteúdo interno */
+  width: 40%; /* Largura do bloco */
+}
+
+.musica-favorita .titulo {
+  font-size: 22px; /* Tamanho do texto do título */
+  margin-bottom: 8px; /* Espaço abaixo do título */
+  color: white; /* Cor branca */
+  border: none; /* Remove qualquer linha */
+}
+
+.musica-favorita img {
+  width: 120px; /* Largura da imagem */
+  height: 120px; /* Altura da imagem */
+  border-radius: 20px; /* Arredonda cantos */
+  object-fit: cover; /* Garante que a imagem não distorça */
+}
+
+.musica-favorita .conteudo {
+  font-size: 18px; /* Tamanho da legenda */
+  margin-top: 6px; /* Espaço acima do texto */
+  color: #ccc; /* Cor cinza clara */
+}
+
+/* ----- Responsividade para telas menores (celulares/tablets) ----- */
+@media (max-width: 768px) {
+  .perfil-central {
+    padding: 0 10px; /* Espaço lateral reduzido */
+  }
+
+  .header-perfil {
+    flex-direction: column; /* Empilha elementos */
+    align-items: flex-start; /* Alinha à esquerda */
+    gap: 12px; /* Espaço entre os itens */
+    margin-top: -30px; /* Reduz sobreposição */
+  }
+
+  .botoes {
+    flex-direction: column; /* Um botão em cima do outro */
+    gap: 10px; /* Espaço entre eles */
+    margin-left: 0; /* Remove empurrão para direita */
+    width: 100%;
+  }
+
+  .contagem {
+    flex-direction: column; /* Cada item em sua linha */
+    align-items: flex-start; /* Alinha à esquerda */
+    padding-left: 0;
+    gap: 6px;
+  }
+
+  .musica-favorita {
+    position: static; /* Tira do canto absoluto */
+    margin-top: 30px; /* Espaço acima */
+    width: 100%; /* Ocupa a largura toda */
+    text-align: left; /* Alinha texto à esquerda */
+  }
+}
+
+.destaque-dorete img{
+  position: absolute; /* posiciona o texto em relação ao pai */
+  top: 100%;
+  left: 4%;
+  height: auto;
+  width: 7%;
+  z-index: 2;
+  border: #ffffff solid 2.5px; /* borda cinza */
+  border-radius: 52px; /* borda arredondada */
+  color: #ffffff; /* cor do texto */
+  letter-spacing: 4px;
+}
+#destaque-dorete-texto {
+  position: absolute; /* posiciona o texto em relação ao pai */
+  top: 109%;
+  left: 4.5%;
+  font-size: 95%; /* tamanho do texto */
+  color: #ffffff; /* cor do texto */
+  letter-spacing: 2.5px;
+}
+
+hr {
+  margin-top: 22%;
+}
+
+.aba-fotos {
+  position: absolute; /* posiciona o texto em relação ao pai */
+  top: 162%;
+  left: 37%;
+  font-size: 150%; /* tamanho do texto */
+  color: #9A9999; /* cor do texto */
+  letter-spacing: 4px;
+}
+.aba-videos {
+  position: absolute; /* posiciona o texto em relação ao pai */
+  top: 162%;
+  left: 54%;
+  font-size: 150%; /* tamanho do texto */
+  color: #9A9999; /* cor do texto */
+  letter-spacing: 4px;
+}
+
+
+/*DESTAQUES DORETE*/
+.dorete img {
+  position: relative; /* posiciona a imagem em relação ao pai */
+  top: 330%;
+  left: 25%;
+  width: 55%; /* largura da imagem */
+  height: auto; /* altura automática para manter a proporção */
+}
+.dorete2 img {
+  position: relative; /* posiciona a imagem em relação ao pai */
+  top: 330%;
+  left: 25%;
+  width: 55%; /* largura da imagem */
+  height: auto; /* altura automática para manter a proporção */
+}
+.dorete3 img {
+  position: relative; /* posiciona a imagem em relação ao pai */
+  top: 330%;
+  left: 25%;
+  width: 55%; /* largura da imagem */
+  height: auto; /* altura automática para manter a proporção */
+}
+.dorete4 img {
+  position: relative; /* posiciona a imagem em relação ao pai */
+  top: 330%;
+  left: 25%;
+  width: 55%; /* largura da imagem */
+  height: auto; /* altura automática para manter a proporção */
+}
+.dorete5 img {
+  position: relative; /* posiciona a imagem em relação ao pai */
+  top: 330%;
+  left: 25%;
+  width: 55%; /* largura da imagem */
+  height: auto; /* altura automática para manter a proporção */
+}
+.dorete6  img {
+  position: relative; /* posiciona a imagem em relação ao pai */
+  top: 330%;
+  left: 25%;
+  width: 55%; /* largura da imagem */
+  height: auto; /* altura automática para manter a proporção */
+}
+.dorete7  img {
+  position: relative; /* posiciona a imagem em relação ao pai */
+  top: 330%;
+  left: 25%;
+  width: 55%; /* largura da imagem */
+  height: auto; /* altura automática para manter a proporção */
+}
